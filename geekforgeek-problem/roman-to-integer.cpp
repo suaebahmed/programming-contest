@@ -54,18 +54,19 @@ void roman_to_int(string s)
 
 int main(){
     optimize();
+    cout<<(39389%10000)<<endl;
     int t=1;
     cin>>t;
     while(t--)
     {
         int type;
         cout<<"type 1 convert integer to roman :"<<endl;
-        cout<<"type other convert integer to roman :"<<endl;
+        cout<<"type other convert roman to integer :"<<endl;
         cin>>type;
         if(type == 1)
         {
             int n;
-            cout<<"input an integer number: "<<endl;
+            cout<<"input an maximum [0,3999] number: "<<endl;
             cin>>n;
             convert_to_roman(n);
         }
