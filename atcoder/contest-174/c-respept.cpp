@@ -1,25 +1,24 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 typedef long long ll;
-
-int main()
-{
-    ll k;
-    cin>>k;
-    if(k%2==0 || k%5==0){
-        cout<<-1<<endl;
-        return 0;
-    }
-    int ans = 1,sum = 7,curr;
-    curr = sum % k;
-    while(curr!=0)
+#define fi first
+#define se second
+const int N=2e6+1;
+int n,k;
+char c[N];
+int main(){
+	ios::sync_with_stdio(false);
+	cin >> k;
+	if(k%2==0 || k%5==0){
+		return cout << "-1\n",0;
+	}
+	int cur=7%k;
+	int ans=1;
+	while(cur!=0)
     {
-        sum = sum*10+7;
-        curr = sum%k;
-        ans++;
-    }
-    cout<<ans<<endl;
-
-    return 0;
+		cur=cur*10+7;
+		cur%=k;
+		ans++;
+	}
+	cout << ans << endl;
 }
