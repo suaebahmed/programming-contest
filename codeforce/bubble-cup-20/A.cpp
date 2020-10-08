@@ -1,7 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define For(i,n) for(ll i=0; i<n; ++i)
+#define For(i,n) for(ll i=0; i<int(n); ++i)
+#define scanArr(v) for (auto &it : v) cin >> it;
 #define all(v) (v).begin(), (v).end()
 #define ff first
 #define ss second
@@ -13,24 +14,32 @@ using namespace std;
 #define deb(x) cout<<"For debug : "<<x<<endl;
 typedef long long ll;
 #define ld long double
+#define mod 1000000007
+const int mx=2e4+5;
 
 void solve()
 {
-    ll n,m,k;
-    cin>>n>>m>>k;
-    vl a(n+m);
-    For(i,n+m) cin>>a[i];
-    int ans=0;
-    sort(a.begin(),a.end());
-    for(int i=0; i<n+m; i++){
-        if(k>=a[i]){
-            k-= a[i];
-            ans++;
+    int n; cin>>n;
+    vector<int> v(n);
+    int a[mx]={0};
+    For(i,n)
+    {
+        int x; cin>>x;
+        a[x]++;
+        v[i]=x;
+    }
+    int j=1;
+    for(int i=mx-5; i>0; i--)
+    {
+        if(a[i])
+        {
+            int tmp=a[i];
+            a[i]=j;
+            j+=tmp;
         }
     }
-    cout<<ans<<endl;
+    for(auto &x: v) cout<<a[x]<<" ";
 }
-
 int main(){
     optimize();
     ll T=1;

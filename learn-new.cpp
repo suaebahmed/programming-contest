@@ -49,3 +49,24 @@ int main(){
     }
     return 0;
 }
+
+
+    string s,t; cin>>s>>t;
+    int n=s.length(),m=t.length();
+    if(m>n) // n and s is big
+    {
+        swap(s,t);
+        swap(n,m);
+    }
+    int j=0;
+    for(int i=0; i<n; i++)
+    {
+        for(; j<m; j++)
+        {
+            if(s[i]==t[j]) break;
+        }
+        if(j>=m)
+        {
+            cout<<-1
+        }
+    }
