@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-
 #define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define FOR(i,a,b) for(int i=a; i<= b; ++i)
 #define all(v) (v).begin(), (v).end()
@@ -17,6 +16,18 @@ ll binary_exponentiation(int b,int n)
             b*=b,n/=2;
         else
             res*=b,n--;
+    }
+    return res;
+}
+
+ll fastexpo(ll a,ll b)
+{
+    ll res=1;
+    while(b)
+    {
+        if(b&1) res*=a;
+        a*=a;
+        b>>=1;
     }
     return res;
 }

@@ -6,6 +6,7 @@ using namespace std;
 #define all(v) (v).begin(), (v).end()
 #define ff first
 #define ss second
+#define mp make_pair
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
@@ -19,27 +20,24 @@ const int mx=2e4+5;
 
 void solve()
 {
-    int n; cin>>n;
-    vector<int> v(n);
-    int a[mx]={0};
+    int n,m; cin>>n>>m;
+    vector<vector<pii>> v(n);
+    int cnt=0;
+
     For(i,n)
     {
-        int x; cin>>x;
-        a[x]++;
-        v[i]=x;
-    }
-    int j=1;
-    for(int i=mx-5; i>0; i--)
-    {
-        if(a[i])
+        vector<pii> col(m);
+        v[i]=col;
+        For(j,m)
         {
-            int tmp=a[i];
-            a[i]=j;
-            j+=tmp;
+            int x,y; cin>>x>>y;
+            v[i][j]={x,y};
         }
     }
-    for(auto &x: v) cout<<a[x]<<" ";
+    For(i,n) For(j,m) if(v[i][j].ff || v[i][j].ss) cnt++;
+    cout<<cnt<<endl;
 }
+
 int main(){
     optimize();
     ll T=1;

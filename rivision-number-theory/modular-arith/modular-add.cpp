@@ -15,21 +15,23 @@ typedef long long ll;
 #define ld long double
 #define mod 1000000007
 
-void solve()
+int divisibleBy5(string N)
 {
-    ld n; cin>>n;
-    int time=1;
-    cout.precision(12);
-    cout<<setfill('&')<<setw(16)<<fixed<<n<<endl;
+    int sum=0;
+    for(int i=0; i<N.length(); i++){
+        sum = (sum*10+N[i]-'0')%5;
+    }
+    if(sum%5==0) cout<<"Yes!"<<endl;
+    else cout<<"No!"<<endl;
 }
 
 int main(){
     optimize();
     ll T=1;
-    cin>>T;
+    //cin>>T;
     while(T--)
     {
-        solve();
+        divisibleBy5("98096894592782281781174736696345805");
     }
     return 0;
 }
