@@ -4,9 +4,9 @@ using namespace std;
 #define For(i,n) for(ll i=0; i<int(n); ++i)
 #define scanArr(v) for (auto &it : v) cin >> it;
 #define all(v) (v).begin(), (v).end()
+#define rall(v) (v).rbegin(), (v).rend()
 #define ff first
 #define ss second
-#define mp make_pair
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
@@ -16,32 +16,54 @@ using namespace std;
 typedef long long ll;
 #define ld long double
 #define mod 1000000007
-const int mx=2e4+5;
 
 void solve()
 {
-    int n,m; cin>>n>>m;
-    vector<vector<pii>> v(n);
-    int cnt=0;
+    int n; cin>>n;
+    vi arr,ng,po,ze;
+    int ps=0,ngt=0;
 
     For(i,n)
     {
-        vector<pii> col(m);
-        v[i]=col;
-        For(j,m)
+        int x; cin>>x;
+        if(x>0) po.pb(x),ps+=x;
+        else if(x<0) ng.pb(x),ngt+=x;
+        else ze.pb(x);
+    }
+    sort(all(ng));
+    sort(po.rbegin(),po.rend());
+
+    if(ps>abs(ngt))
+    {
+        for(auto x: po) arr.pb(x);
+        for(auto x: ng) arr.pb(x);
+        for(auto x: ze) arr.pb(x);
+    }
+    else
+    {
+        for(auto x: ng) arr.pb(x);
+        for(auto x: po) arr.pb(x);
+        for(auto x: ze) arr.pb(x);
+    }
+    int psum=0;
+    For(i,n)
+    {
+        psum+=arr[i];
+        if(psum==0)
         {
-            int x,y; cin>>x>>y;
-            v[i][j]={x,y};
+            cout<<"NO"<<endl;
+            return;
         }
     }
-    For(i,n) For(j,m) if(v[i][j].ff || v[i][j].ss) cnt++;
-    cout<<cnt<<endl;
+    cout<<"YES"<<endl;
+    for(auto y: arr) cout<<y<<" ";
+    cout<<endl;
 }
 
 int main(){
     optimize();
     ll T=1;
-    //cin>>T;
+    cin>>T;
     while(T--)
     {
         solve();
