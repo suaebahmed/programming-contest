@@ -14,14 +14,24 @@ using namespace std;
 #define vl vector<ll>
 #define pb push_back
 #define deb(x) cout<<"For debug : "<<x<<endl;
-typedef long long ll;
+typedef long long int ll;
 #define ld long double
 #define mod 1000000007
 const int mx=2e4+5;
 
 void solve()
 {
-
+    int n; cin>>n;
+    int r=n%10,cnt=0;
+    while(n>0)
+    {
+        n/=10;
+        cnt++;
+    }
+    if(cnt==2) cnt+=1;
+    else if(cnt==3) cnt+=3;
+    else if(cnt==4) cnt+=6;
+    cout<<(r-1)*10+cnt<<endl;
 }
 
 int main(){

@@ -21,20 +21,30 @@ const int mx=1100000;
 
 void solve()
 {
-    string s; cin>>s;
-    int n=s.length(),cnt=0;
-    stack<char> st;
-    for(int i=0; i<n; i++)
+    int n; cin>>n;
+    vi v(n);
+    scanArr(v);
+    int x=*max_element(all(v));
+
+    if(x==v[0] && v[0]>v[1])
     {
-        if(!st.empty())
-        {
-            char ch=st.top();
-            if(s[i]!=ch) st.pop(),cnt++;
-            else st.push(s[i]);
-        }
-        else st.push(s[i]);
+        cout<<1<<endl;
+        return;
     }
-    cout<<(cnt&1?"DA":"NET")<<endl;
+    for(int i=1; i<n-1; i++)
+    {
+        if((x==v[i] && v[i]>v[i-1]) || (x==v[i] && v[i]>v[i+1]))
+        {
+            cout<<i+1<<endl;
+            return;
+        }
+    }
+    if(x==v[n-1] && v[n-1]>v[n-2])
+    {
+        cout<<n<<endl;
+        return;
+    }
+    cout<<-1<<endl;
 }
 
 int main(){
