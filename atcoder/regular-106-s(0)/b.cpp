@@ -7,51 +7,47 @@ using namespace std;
 #define rall(v) (v).rbegin(), (v).rend()
 #define ff first
 #define ss second
-#define mp make_pair
+#define m_p make_pair
+#define sz(s) (s).size()
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
 #define vl vector<ll>
 #define pb push_back
 #define deb(x) cout<<"For debug : "<<x<<endl;
+#define endl "\n"
 typedef long long ll;
 #define ld long double
 #define mod 1000000007
-int mx=-1e5+1;
+
+ll fastExpo(ll a,ll n)
+{
+    ll res=1;
+    while(n>0)
+    {
+        if(n&1) res*=a;
+        a*=a;
+        n>>=1;
+    }
+    return res;
+}
 
 void solve()
 {
-    int n; cin>>n;
-    vi v(n);
-    scanArr(v);
-    int l=0,r=n-1;
-
-    while(l<n)
-    {
-        if(v[l]==1) break;
-        else l++;
-    }
-    while(r>=0)
-    {
-        if(v[r]==1) break;
-        else r--;
-    }
-    //
-    int ans=0;
-    for(int i=l; i<=r; i++)
-    {
-        if(v[i]==0) ans++;
-    }
-    cout<<ans<<endl;
+    ll n;
+    cin>>n;
+    ll i=1;
+    i=sqrt(2*(n+1));
+    if(i*i+i>2*(n+1)) i--;
+    //while(fastExpo(i,2)+i<=2*(n+1)) i++;
+    //i--;
+    //deb(i);
+    cout<<n-i+1<<endl;
 }
 
 int main(){
     optimize();
-    ll T=1;
-    cin>>T;
-    while(T--)
-    {
-        solve();
-    }
+    int t=1;// cin>>t;
+    while(t--) solve();
     return 0;
 }

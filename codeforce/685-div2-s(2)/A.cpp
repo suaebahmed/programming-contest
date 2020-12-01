@@ -8,37 +8,37 @@ using namespace std;
 #define ff first
 #define ss second
 #define mp make_pair
+#define sz(s) (s).size()
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
 #define vl vector<ll>
 #define pb push_back
 #define deb(x) cout<<"For debug : "<<x<<endl;
+#define endl "\n"
 typedef long long ll;
 #define ld long double
 #define mod 1000000007
-const int mx1=1e8+5;
-
-ll _gcd(ll a,ll b)
-{
-    return b==0?a:_gcd(b,a%b);
-}
+const int mx=2e5;
+int n,ans=0;
 
 void solve()
 {
-    int n; cin>>n;
-    int ans=0;
-    For(i,n)
-    {
-        ll x; cin>>x;
-        ans=_gcd(x,ans);
-    }
-    cout<<ans<<endl;
+    cin>>n;
+    if(n==1) cout<<0<<endl;
+    else if(n==2) cout<<1<<endl;
+    else if(n==3) cout<<2<<endl;
+    else if(n%2==0) cout<<2<<endl;
+    else cout<<3<<endl;
 }
 
 int main(){
     optimize();
     ll T=1;
-    solve();
+    cin>>T;
+    while(T--)
+    {
+        solve();
+    }
     return 0;
 }

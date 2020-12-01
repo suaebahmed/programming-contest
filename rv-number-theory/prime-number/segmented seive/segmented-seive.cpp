@@ -43,6 +43,8 @@ void segmentedSieve(ll a,ll b)
     }
     /// output
     for(ll i=a; i<=b; i++) cout<<arr[i-a]<<" ";
+    cout<<endl;
+    for(auto x: arr) cout<<x<<" ";
 }
 
 int main()

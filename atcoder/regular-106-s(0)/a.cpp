@@ -13,15 +13,29 @@ using namespace std;
 #define pb push_back
 #define MOD 1000000007
 typedef long long ll;
+string alph("abcdefghijklmnopqrstuvwxyz"),s,t;
+ll n, cnt, ans, a, b, c, tmp, m, x, y, sum, k;
+
+void solve()
+{
+    int a,b,x,y;
+    cin>>a>>b>>x>>y;
+    ans=x;
+    if(a>b)
+    {
+        for(int i=b; i<a-1; i++) ans+=min(2*x,y);
+    }
+    else
+    {
+        for(int i=a; i<b; i++) ans+=min(2*x,y);
+    }
+    cout<<ans<<endl;
+}
 
 int main(){
     optimize();
-    ll T=1;
-    //cin>>T;
-    while(T--)
-    {
-        ll a,b,c,d;
-        cin>>a>>b>>c>>d;
-    }
+    int t=1;// cin>>t;
+    while(t--) solve();
     return 0;
 }
+

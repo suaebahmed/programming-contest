@@ -17,28 +17,32 @@ using namespace std;
 typedef long long ll;
 #define ld long double
 #define mod 1000000007
-const int mx1=1e8+5;
-
-ll _gcd(ll a,ll b)
-{
-    return b==0?a:_gcd(b,a%b);
-}
+int mx=-1e5+1;
+string alph("abcdefghijklmnopqrstuvwxyz"),s,t;
+ll n, cnt, ans, a, b, c, tmp, m, x, y, sum, k;
 
 void solve()
 {
-    int n; cin>>n;
-    int ans=0;
-    For(i,n)
+    cin>>n>>m;
+    vector<ld> v(n),sf;
+    ld sm=0,ps=0;
+    for(int i=1; i<=n; i++)
     {
-        ll x; cin>>x;
-        ans=_gcd(x,ans);
+        cin>>x;
+        sm+=x;
     }
-    cout<<ans<<endl;
+    if(sm==m) cout<<"YES\n";
+    else cout<<"NO\n";
+
 }
 
 int main(){
     optimize();
     ll T=1;
-    solve();
+    cin>>T;
+    while(T--)
+    {
+        solve();
+    }
     return 0;
 }

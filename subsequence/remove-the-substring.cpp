@@ -7,7 +7,8 @@ using namespace std;
 #define rall(v) (v).rbegin(), (v).rend()
 #define ff first
 #define ss second
-#define mp make_pair
+#define m_p make_pair
+#define sz(s) (s).size()
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define vi vector<int>
@@ -17,28 +18,38 @@ using namespace std;
 typedef long long ll;
 #define ld long double
 #define mod 1000000007
-const int mx1=1e8+5;
-
-ll _gcd(ll a,ll b)
-{
-    return b==0?a:_gcd(b,a%b);
-}
+const int mx=1100000;
+string alph("abcdefghijklmnopqrstuvwxyz"),s,t;
+int n, cnt, ans, a, b, c, tmp, m, x, y, sum, k;
+//1203/problem/D2
 
 void solve()
 {
-    int n; cin>>n;
-    int ans=0;
-    For(i,n)
+    cin>>s>>t;
+    n=sz(s),m=sz(t);
+    vector<int> a(m+2),b(m+2);
+    for(int i=0,j=0; i<n&&j<m; i++)
     {
-        ll x; cin>>x;
-        ans=_gcd(x,ans);
+        if(s[i]==t[j]) a[j++]=i;
     }
+    for(int i=n-1,j=m-1; i>=0&&j>=0; i--)
+    {
+        if(s[i]==t[j]) b[j--]=i;
+    }
+    //for(auto x: a) cout<<x<<" ";
+    ans=max(b[0],n-a[m-1]-1);
+
+    for(int i=1; i<m; i++) ans=max(ans,b[i]-a[i-1]-1);
     cout<<ans<<endl;
 }
 
 int main(){
     optimize();
-    ll T=1;
-    solve();
+    int T=1;
+    //cin>>T;
+    while(T--)
+    {
+        solve();
+    }
     return 0;
 }

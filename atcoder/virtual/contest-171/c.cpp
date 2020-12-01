@@ -11,6 +11,7 @@ using namespace std;
 #define vl vector<ll>
 #define pb push_back
 #define deb(x) cout<<"For debug : "<<x<<endl;
+#define sz(s) (s).size()
 typedef long long ll;
 #define ld long double
 
@@ -37,13 +38,34 @@ void solve()
     cout<<s<<endl;
 }
 
+void solve_fast()
+{
+    ll n; cin>>n;
+    string s;
+    while(n>0)
+    {
+        n--;
+        s+=(n%26)+'A';
+        n/=26;
+    }
+    reverse(all(s));
+    cout<<s<<endl;
+}
+
+void str_num()
+{
+    string s; cin>>s;
+    ll n=0,m=0,i;
+    m=sz(s);
+    i=m-1;
+    while(i>=0){
+
+    }
+}
+
 int main(){
     optimize();
     ll T=1;
-    //cin>>T;
-    while(T--)
-    {
-        solve();
-    }
+    solve_fast();
     return 0;
 }

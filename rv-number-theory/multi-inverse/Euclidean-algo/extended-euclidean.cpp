@@ -14,43 +14,38 @@ using namespace std;
 #define vl vector<ll>
 #define pb push_back
 #define deb(x) cout<<"For debug : "<<x<<endl;
-typedef long long ll;
+typedef long long int ll;
 #define ld long double
 #define mod 1000000007
-const int mx=1100000;
+const int mx=2e4+5;
+
+int extended_gcd(int a,int b,int *x,int *y)
+{
+    if(a==0)
+    {
+        *x=0;
+        *y=1;
+        return b;
+    }
+    int x1,y1;
+    int gcd=extended_gcd(b%a,a,&x1,&y1);
+    // update result
+    *x = y1 - (b/a) * x1;
+    *y = x1;
+    return gcd;
+}
 
 void solve()
 {
-    int n; cin>>n;
-    vi v(n);
-    scanArr(v);
-    int x=*max_element(all(v));
-
-    if(x==v[0] && v[0]>v[1])
-    {
-        cout<<1<<endl;
-        return;
-    }
-    for(int i=1; i<n-1; i++)
-    {
-        if((x==v[i] && v[i]>v[i-1]) || (x==v[i] && v[i]>v[i+1]))
-        {
-            cout<<i+1<<endl;
-            return;
-        }
-    }
-    if(x==v[n-1] && v[n-1]>v[n-2])
-    {
-        cout<<n<<endl;
-        return;
-    }
-    cout<<-1<<endl;
+	int x, y, a = 56, b = 15;
+    cout<<extended_gcd(a,b,&x,&y)<<endl;
+    cout<<"x: "<<x<<" "<<" y: "<<y<<endl;
 }
 
 int main(){
     optimize();
-    int T=1;
-    cin>>T;
+    ll T=1;
+    //cin>>T;
     while(T--)
     {
         solve();

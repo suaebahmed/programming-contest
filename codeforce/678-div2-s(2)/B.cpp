@@ -18,18 +18,29 @@ typedef long long int ll;
 #define ld long double
 #define mod 1000000007
 const int mx=2e4+5;
+string alph("abcdefghijklmnopqrstuvwxyz"),s,t;
+ll n, cnt, ans, a, b, c, tmp, m, x, y, sum, k;
 
 void solve()
 {
-    int n; cin>>n;
-    int x=1,k=2,m=x;
-
+    cin>>n;
+    For(i,n)
+    {
+        For(j,n)
+        {
+            if(i==j) cout<<4<<" ";
+            else if(i==j-1) cout<<1<<" ";
+            else if(i==n-1 && j==0) cout<<1<<" ";
+            else cout<<0<<" ";
+        }
+        cout<<endl;
+    }
 }
 
 int main(){
     optimize();
     ll T=1;
-    //cin>>T;
+    cin>>T;
     while(T--)
     {
         solve();

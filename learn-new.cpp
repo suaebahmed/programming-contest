@@ -1,72 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define FOR(i,a,b) for(int i=a; i<= b; ++i)
-#define all(v) (v).begin(), (v).end()
-#define fi first
-#define se second
-#define Ld long double
-typedef long long ll;
-set<string> st;
-vector<int> v;
+const int MAX = 3000;
 
-ll d,t,f,a[2000],b[2000],c[2000];
-ll i;
-/*
-2 5
-4 6
-0 0
-*/
-int main(){
-    optimize();
-    int t=1;
-    cin>>t;
-    while(t--)
-    {
-        int myints[] = {10,20,30,30,20,10,10,20};
-        vector<int> myvector (myints, myints+8);
-        ll cnt = count (myvector.begin(), myvector.end(), 30);
-        cout<<cnt<<endl;
+int smartNumber(int n)
+{
+	int primes[MAX] = {0};
+	vector<int> result;
+	for (int i=2; i<MAX; i++)
+	{
+		if (primes[i] == 0)
+		{
+			primes[i] = 1;
 
-        /// -----------  before an Exam || contest/4/problem/B    ---------------
-        cin>>d>>t;
-        for(i=0;i<d;i++) cin>>a[i]>>b[i];
-        for(i=0;i<d;i++){
-            f=t;
-            t-=a[i];
-            c[i]=f-t; /// store in result
-            if(t<0){cout<<"NO";return 0;}
-        }
-        for(i=0;i<d && t>0;i++){
-            f=t;
-            if(t>(b[i]-a[i])) t-=(b[i]-a[i]);
-            else t=0;
-            c[i]+=(f-t);
-            if(i+1==d && t>0){cout<<"NO";return 0;}
-        }
-        cout<<"YES"<<endl;
-        for(i=0;i<d;i++) cout<<c[i]<<" ";
-    }
-    return 0;
+			// mark all multiples of 'i' as non prime
+			for (int j=i*2; j<MAX; j=j+i)
+			{
+				primes[j] -= 1;
+
+				// If i is the third prime factor of j
+				// then add it to result as it has at
+				// least three prime factors.
+				if ( (primes[j] + 3) == 0)
+					result.push_back(j);
+			}
+		}
+	}
+	sort(result.begin(), result.end());
+	return result[n-1];
 }
 
-
-    string s,t; cin>>s>>t;
-    int n=s.length(),m=t.length();
-    if(m>n) // n and s is big
-    {
-        swap(s,t);
-        swap(n,m);
-    }
-    int j=0;
-    for(int i=0; i<n; i++)
-    {
-        for(; j<m; j++)
-        {
-            if(s[i]==t[j]) break;
-        }
-        if(j>=m)
-        {
-            cout<<-1
-        }
-    }
+int main()
+{
+	int n = 50;
+	cout << smartNumber(n);
+	return 0;
+}
