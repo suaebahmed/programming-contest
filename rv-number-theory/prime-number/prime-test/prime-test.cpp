@@ -7,7 +7,7 @@
 using namespace std;
 typedef long long ll;
 
-bool isPrime(int x)
+bool isPrime(int n)
 {
     if(n == 1) return 0;
     for(int i=2; i*i<=n; i++)
