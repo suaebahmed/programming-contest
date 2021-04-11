@@ -23,20 +23,68 @@ typedef long long ll;
 #define m_p make_pair
 const int MXN=1e5+10;
 const int INF=INT_MAX;
+vector<int> g[MXN],gT[MXN]; //adj
+vector<bool> vis(MXN);
+vector<int> stack_order,component;
+/*
+6 8
+0 1
+1 2
+2 3
+3 0
+2 4
+4 5
+5 6
+6 4
+*/
+void dfs1(int u){
+    vis[u] = 1;
+    for(auto v: g[u]){
+        if(!vis[v]){
+            dfs1(v);
+        }
+    }
+    stack_order.pb(u);
+}
+
+void dfs2(int u){
+    vis[u] = 1;
+    component.pb(u);
+    for(auto v: gT[u]){
+        if(!vis[v]){
+            dfs2(v);
+        }
+    }
+}
 
 void solve(){
-    int n,k; cin>>n>>k;
-    if((n-1)/2 < k){
-        cout<<"-1\n";
-        return;
+    int n,m; cin>>n>>m;
+    for(int i=0; i<m; i++){
+        int u,v;
+        cin>>u>>v;
+        g[u].pb(v);
+        gT[v].pb(u);
     }
-    int r = n-k+1,l=1;
-    cout<<l<<" ";
-    l++;
-
-    while(l<n-k+1 || r<=n){
-        if(r<=n) cout<<r<<" ",r++;
-        if(l<n-k+1) cout<<l<<" ",l++;
+    for(int i=0; i<=n; i++){
+        if(vis[i]==0){
+            dfs1(i);
+        }
+    }
+    // for(auto x: stack_order) cout<<x<<" ";
+    for(int i=0; i<=n; i++){
+        vis[i] = 0;
+    }
+    //
+    for(int i=0; i<=n; i++){
+        int v = stack_order[n-i];
+        if(vis[v]==0){
+            dfs2(v);
+            // printing next component ..
+            reverse(all(component));
+            for(auto x: component) cout<<x<<" ";
+            cout<<endl;
+            component.clear();
+        }
     }
 }
 
@@ -48,7 +96,7 @@ int main(){
     #endif
     int tt=1;
     // scanf("%d",&tt);
-    cin>>tt;
+    // cin>>tt;
     for(int i=1; i<=tt; i++){
         // cout<<"Case #"<<i<<":\n";
         solve();
